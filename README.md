@@ -8,7 +8,7 @@ A beautiful, responsive website for Millie's Swedish Candy Co. — a Swedish can
 2. Add your images to the `images/` folder
 3. Update placeholder content (see below)
 4. Set up form handling
-5. Deploy to Netlify, Vercel, or any web host
+5. Push to `main` to publish (see Deployment)
 
 ---
 
@@ -161,23 +161,35 @@ swap in a real `<img>`.
 
 ## Deployment
 
-### Netlify (Recommended)
+The site is hosted on **GitHub Pages** from its own repository,
+`endurancefl/millies-swedish-candy` (branch `main`, root folder). It shares
+nothing with any other project.
 
-1. Go to [netlify.com](https://netlify.com) and sign up
-2. Drag and drop your project folder onto the Netlify dashboard
-3. Your site will be live at a `.netlify.app` URL
-4. Connect a custom domain in Netlify settings
+- Live test address: https://endurancefl.github.io/millies-swedish-candy/
+- To publish a change: commit and push to `main`; Pages rebuilds in about a minute.
+- This folder pushes as the `endurancefl` GitHub account through a repo-local
+  credential helper, so the Mac's default `gh` account is never switched.
 
-### Vercel
+### Domain (milliescandy.com) - not connected yet
 
-1. Go to [vercel.com](https://vercel.com) and sign up
-2. Import your project folder
-3. Deploy with one click
+Registered at Squarespace Domains (expires 2028-09-08). DNS is managed in
+Millie's Squarespace account and currently points at a Squarespace
+"Coming Soon" page. Email is Google Workspace.
 
-### Traditional Web Hosting
+To connect it (needs Millie's Squarespace login):
 
-1. Upload all files via FTP to your web host
-2. Ensure `index.html` is at the root
+1. Verify the domain for GitHub Pages (account Settings > Pages > Add a
+   domain) by adding the TXT record GitHub gives you in Squarespace DNS.
+2. In Squarespace DNS: delete the "Squarespace Defaults" records. Keep the
+   Google Workspace MX and TXT records.
+3. Add A records for `@`: 185.199.108.153, 185.199.109.153, 185.199.110.153,
+   185.199.111.153, and a CNAME for `www` to `endurancefl.github.io`.
+4. In the repo's Settings > Pages, set the custom domain to
+   `www.milliescandy.com` (this adds a `CNAME` file), then tick Enforce HTTPS
+   once the certificate is issued.
+
+Do not add the `CNAME` file before the DNS change: GitHub would then redirect
+the test address to milliescandy.com, which still shows Squarespace.
 
 ---
 
