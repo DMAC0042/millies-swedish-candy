@@ -511,7 +511,7 @@ a.ruled__cell:hover {
 
 .map__pin {
   position: absolute;
-  transform: translate(-50%, -82%);
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
