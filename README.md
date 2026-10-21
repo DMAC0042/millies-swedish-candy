@@ -173,26 +173,17 @@ repository and shares nothing with any other project. (An earlier copy at
 - Rollback point before the 2026-10-20 accessibility fixes: tag
   `before-accessibility-fixes`.
 
-### Domain (milliescandy.com) - not connected yet
+### Domain (milliescandy.com) - connected 2026-10-20
 
-Registered at Squarespace Domains (expires 2028-09-08). DNS is managed in
-Millie's Squarespace account and currently points at a Squarespace
-"Coming Soon" page. Email is Google Workspace.
-
-To connect it (needs Millie's Squarespace login):
-
-1. Verify the domain for GitHub Pages (DMAC0042 account Settings > Pages >
-   Add a domain) by adding the TXT record GitHub gives you in Squarespace DNS.
-2. In Squarespace DNS: delete the "Squarespace Defaults" records. Keep the
-   Google Workspace MX and TXT records.
-3. Add A records for `@`: 185.199.108.153, 185.199.109.153, 185.199.110.153,
-   185.199.111.153, and a CNAME for `www` to `dmac0042.github.io`.
-4. In the repo's Settings > Pages, set the custom domain to
-   `www.milliescandy.com` (this adds a `CNAME` file), then tick Enforce HTTPS
-   once the certificate is issued.
-
-Do not add the `CNAME` file before the DNS change: GitHub would then redirect
-the test address to milliescandy.com, which still shows Squarespace.
+- Live at https://www.milliescandy.com (milliescandy.com and the old
+  github.io address forward to it; HTTPS enforced).
+- Registered at Squarespace Domains (expires 2028-09-08); DNS is managed in
+  Millie's Squarespace account under Custom records: four A records for `@`
+  (185.199.108-111.153), `www` CNAME `dmac0042.github.io`, and the TXT
+  `_github-pages-challenge-DMAC0042` that verifies the domain to the DMAC0042
+  account (keep it, it stops anyone else claiming the domain on GitHub).
+- Email is Google Workspace; its MX/TXT records are separate and untouched.
+- The `CNAME` file in this folder holds the domain; don't delete it.
 
 ---
 
