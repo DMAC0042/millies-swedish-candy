@@ -11,6 +11,12 @@
    - Brown: #7A6D5F  (the chocolate brown in the shop mural:
                        text, rules, footer)
    Logo blue: #CAD8CB (Millie's hex, "Swedish Candy Co.")
+   Accessibility (WCAG 2.2 AA, 4.5:1 for text):
+   - Button red: #D63838  a deeper red used only where red sits
+                          behind or forms words (buttons, chosen
+                          date/time, signature, required *).
+                          Stripes, trim and doodles keep #FF6969.
+   - Hint text:  #7E7264  placeholders ("choose a date")
 
    No gradients anywhere: every stripe and trim is a
    flat-colour SVG tile.
@@ -18,6 +24,8 @@
 
 :root {
   --red: #FF6969;
+  --red-deep: #D63838;
+  --hint: #7E7264;
   --mint: #CAD8CB;
   --cream: #FFFFED;
   --ink: #7A6D5F;
@@ -48,6 +56,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keep whatever the keyboard lands on clear of the sticky menu */
+  scroll-padding-top: 120px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -279,8 +289,8 @@ p + p {
 }
 
 .btn--red {
-  background: var(--red);
-  border-color: var(--red);
+  background: var(--red-deep);
+  border-color: var(--red-deep);
   color: var(--white);
 }
 
@@ -610,7 +620,7 @@ a.ruled__cell:hover {
 
 .form__label--required::after {
   content: ' *';
-  color: var(--red);
+  color: var(--red-deep);
 }
 
 .form__input,
@@ -647,7 +657,7 @@ a.ruled__cell:hover {
 
 .form__input::placeholder,
 .form__textarea::placeholder {
-  color: #B3A99C;
+  color: var(--hint);
 }
 
 .form__input:focus,
@@ -704,7 +714,7 @@ a.ruled__cell:hover {
 .story__sign {
   font-family: var(--font-hand);
   font-size: 2rem;
-  color: var(--red);
+  color: var(--red-deep);
   margin-top: 18px;
   line-height: 1;
 }
@@ -780,7 +790,6 @@ a.ruled__cell:hover {
   padding: 16px var(--gutter);
   text-align: center;
   font-size: 0.8rem;
-  opacity: 0.75;
 }
 
 /* ---------- Scroll fade-in ---------- */
@@ -1037,7 +1046,7 @@ a.ruled__cell:hover {
 }
 
 .picker__trigger.is-empty {
-  color: #B3A99C;
+  color: var(--hint);
 }
 
 .picker__trigger:focus-visible,
@@ -1080,11 +1089,12 @@ a.ruled__cell:hover {
 .picker__list li:hover,
 .picker__list li:focus {
   outline: none;
-  background: var(--mint);
+  background: var(--ink);
+  color: var(--cream);
 }
 
 .picker__list li[aria-selected="true"] {
-  background: var(--red);
+  background: var(--red-deep);
   color: var(--white);
 }
 
@@ -1151,7 +1161,8 @@ a.ruled__cell:hover {
 .picker__day:hover:not(:disabled),
 .picker__day:focus-visible {
   outline: none;
-  background: var(--mint);
+  background: var(--ink);
+  color: var(--cream);
 }
 
 .picker__day.is-today {
@@ -1159,7 +1170,7 @@ a.ruled__cell:hover {
 }
 
 .picker__day.is-chosen {
-  background: var(--red);
+  background: var(--red-deep);
   color: var(--white);
 }
 
@@ -1193,6 +1204,17 @@ a.ruled__cell:hover {
 .bags.error {
   outline: 2px dashed var(--red);
   outline-offset: 4px;
+}
+
+/* The words under a field that says what's missing */
+.form__error {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--red-deep);
+}
+.form__error::before {
+  content: '! ';
+  font-weight: 600;
 }
 
 .bag-row {
@@ -1239,8 +1261,8 @@ a.ruled__cell:hover {
 }
 
 .stepper__btn:hover:not(:disabled) {
-  background: var(--red);
-  border-color: var(--red);
+  background: var(--red-deep);
+  border-color: var(--red-deep);
   color: var(--white);
 }
 

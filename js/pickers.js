@@ -127,6 +127,9 @@
     select.tabIndex = -1;
     select.setAttribute('aria-hidden', 'true');
     pointLabel(select, trigger);
+    var lab = document.querySelector('label[for="' + trigger.id + '"]');
+    list.setAttribute('aria-label', lab ? lab.textContent.trim() : placeholder);
+    list.tabIndex = 0;
     mirrorError(select, trigger);
     wrap.appendChild(trigger);
     wrap.appendChild(list);
@@ -230,8 +233,14 @@
       var step = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 }[e.key];
       if (!step) return;
       e.preventDefault();
+      // Skip over closed days and stop at today, so focus never lands on a
+      // disabled day (which can't hold focus and would drop the keyboard)
       var d = new Date(cur.dataset.date + 'T00:00:00');
-      d.setDate(d.getDate() + step);
+      for (var tries = 0; tries < 60; tries++) {
+        d.setDate(d.getDate() + step);
+        if (ok(d) || d < today) break;
+      }
+      if (!ok(d)) return;
       if (d.getMonth() !== view.getMonth()) { view = new Date(d.getFullYear(), d.getMonth(), 1); }
       draw(iso(d));
     });

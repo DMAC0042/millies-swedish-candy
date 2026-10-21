@@ -184,6 +184,7 @@ function validateForm(form) {
 
     if (!field.value.trim()) {
       field.classList.add('error');
+      setFieldError(field, field.dataset.error || 'please fill this in');
       isValid = false;
     }
 
@@ -192,21 +193,71 @@ function validateForm(form) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(field.value)) {
         field.classList.add('error');
+        setFieldError(field, 'please check your email address');
         isValid = false;
       }
     }
   });
 
   if (!isValid) {
-    // Focus first error field
+    // Focus the first field with a problem (the visible part, for the
+    // custom pickers and the bag counter whose real field is hidden)
     const firstError = form.querySelector('.error');
     if (firstError) {
-      firstError.focus();
+      const shown = visibleControl(firstError);
+      (shown.matches('.bags') ? shown.querySelector('button:not(:disabled), input') : shown).focus();
     }
   }
 
   return isValid;
 }
+
+/* ================================================
+   FIELD ERROR MESSAGES
+   A red line alone can't be seen by everyone, so each
+   problem is also written out under the field and tied
+   to it, so screen readers read it too.
+   ================================================ */
+function visibleControl(field) {
+  if (field.type !== 'hidden' && !field.classList.contains('picker__native')) return field;
+  return document.getElementById(field.id + '-picker') ||
+    field.closest('.form__group').querySelector('.bags') || field;
+}
+
+function setFieldError(field, message) {
+  const control = visibleControl(field);
+  const id = field.id + '-error';
+  let note = document.getElementById(id);
+  if (!note) {
+    note = document.createElement('p');
+    note.id = id;
+    note.className = 'form__error';
+    field.closest('.form__group').appendChild(note);
+    // Clear the message as soon as the field is fixed
+    new MutationObserver(() => {
+      if (!field.classList.contains('error')) clearFieldError(field);
+    }).observe(field, { attributes: true, attributeFilter: ['class'] });
+  }
+  note.textContent = message;
+  control.setAttribute('aria-invalid', 'true');
+  control.setAttribute('aria-describedby', id);
+}
+
+function clearFieldError(field) {
+  const control = visibleControl(field);
+  const note = document.getElementById(field.id + '-error');
+  if (note) note.remove();
+  control.removeAttribute('aria-invalid');
+  control.removeAttribute('aria-describedby');
+}
+
+// Typing into a field that was flagged clears the flag once it has a value
+document.addEventListener('input', e => {
+  const field = e.target;
+  if (field.classList && field.classList.contains('error') && field.value.trim()) {
+    field.classList.remove('error');
+  }
+});
 
 /* ================================================
    SMOOTH SCROLL

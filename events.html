@@ -86,21 +86,21 @@
             <div class="form__row">
               <div class="form__group">
                 <label for="name" class="form__label form__label--required">name</label>
-                <input type="text" id="name" name="name" class="form__input" required autocomplete="name">
+                <input type="text" id="name" data-error="please add your name" name="name" class="form__input" required autocomplete="name">
               </div>
               <div class="form__group">
                 <label for="phone" class="form__label form__label--required">phone</label>
-                <input type="tel" id="phone" name="phone" class="form__input" required autocomplete="tel">
+                <input type="tel" id="phone" data-error="please add your phone number" name="phone" class="form__input" required autocomplete="tel">
               </div>
             </div>
             <div class="form__group">
               <label for="email" class="form__label form__label--required">email</label>
-              <input type="email" id="email" name="email" class="form__input" required autocomplete="email">
+              <input type="email" id="email" data-error="please add your email" name="email" class="form__input" required autocomplete="email">
             </div>
             <div class="form__row">
               <div class="form__group">
                 <label for="event-date" class="form__label form__label--required">event date</label>
-                <input type="date" id="event-date" name="event_date" class="form__input" required>
+                <input type="date" id="event-date" data-error="please choose your event date" name="event_date" class="form__input" required>
               </div>
               <div class="form__group">
                 <label for="guest-count" class="form__label">about how many guests?</label>
@@ -113,7 +113,7 @@
             </div>
             <div class="form__group">
               <label for="event-details" class="form__label form__label--required">tell us everything</label>
-              <textarea id="event-details" name="event_details" class="form__textarea" required placeholder="the occasion, favorite candy, colors, the vibe you're going for..."></textarea>
+              <textarea id="event-details" data-error="please tell us a little about your event" name="event_details" class="form__textarea" required placeholder="the occasion, favorite candy, colors, the vibe you're going for..."></textarea>
             </div>
             <button type="submit" class="btn btn--red form__submit">send inquiry</button>
             </form>

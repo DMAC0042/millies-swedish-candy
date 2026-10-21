@@ -66,25 +66,25 @@
             <div class="form__row">
               <div class="form__group">
                 <label for="name" class="form__label form__label--required">name</label>
-                <input type="text" id="name" name="name" class="form__input" required autocomplete="name">
+                <input type="text" id="name" data-error="please add your name" name="name" class="form__input" required autocomplete="name">
               </div>
               <div class="form__group">
                 <label for="phone" class="form__label form__label--required">phone</label>
-                <input type="tel" id="phone" name="phone" class="form__input" required autocomplete="tel">
+                <input type="tel" id="phone" data-error="please add your phone number" name="phone" class="form__input" required autocomplete="tel">
               </div>
             </div>
             <div class="form__group">
               <label for="email" class="form__label form__label--required">email</label>
-              <input type="email" id="email" name="email" class="form__input" required autocomplete="email">
+              <input type="email" id="email" data-error="please add your email" name="email" class="form__input" required autocomplete="email">
             </div>
             <div class="form__row">
               <div class="form__group">
                 <label for="pickup-date" class="form__label form__label--required">pickup date (wed &ndash; sat)</label>
-                <input type="date" id="pickup-date" name="pickup_date" class="form__input" data-days="3,4,5,6" required>
+                <input type="date" id="pickup-date" data-error="please choose a pickup day" name="pickup_date" class="form__input" data-days="3,4,5,6" required>
               </div>
               <div class="form__group">
                 <label for="pickup-time" class="form__label form__label--required">pickup time</label>
-                <select id="pickup-time" name="pickup_time" class="form__select" required>
+                <select id="pickup-time" data-error="please choose a pickup time" name="pickup_time" class="form__select" required>
                   <option value="">select a time</option>
                   <option value="11:00 AM">11:00 AM</option>
                   <option value="11:30 AM">11:30 AM</option>
@@ -133,7 +133,7 @@
                   </div>
                 </div>
               </div>
-              <input type="hidden" id="order-summary" name="order_summary" required>
+              <input type="hidden" id="order-summary" data-error="please pick at least one bag" name="order_summary" required>
             </div>
             <button type="submit" class="btn btn--red form__submit">send my order</button>
             </form>
