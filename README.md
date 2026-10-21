@@ -162,13 +162,16 @@ swap in a real `<img>`.
 ## Deployment
 
 The site is hosted on **GitHub Pages** from its own repository,
-`endurancefl/millies-swedish-candy` (branch `main`, root folder). It shares
-nothing with any other project.
+`DMAC0042/millies-swedish-candy` (branch `main`, root folder). It is its own
+repository and shares nothing with any other project. (An earlier copy at
+`endurancefl/millies-swedish-candy` is archived, with Pages turned off.)
 
-- Live test address: https://endurancefl.github.io/millies-swedish-candy/
+- Live test address: https://dmac0042.github.io/millies-swedish-candy/
 - To publish a change: commit and push to `main`; Pages rebuilds in about a minute.
-- This folder pushes as the `endurancefl` GitHub account through a repo-local
-  credential helper, so the Mac's default `gh` account is never switched.
+- This folder pushes as the `DMAC0042` GitHub account through a repo-local
+  credential helper.
+- Rollback point before the 2026-10-20 accessibility fixes: tag
+  `before-accessibility-fixes`.
 
 ### Domain (milliescandy.com) - not connected yet
 
@@ -178,12 +181,12 @@ Millie's Squarespace account and currently points at a Squarespace
 
 To connect it (needs Millie's Squarespace login):
 
-1. Verify the domain for GitHub Pages (account Settings > Pages > Add a
-   domain) by adding the TXT record GitHub gives you in Squarespace DNS.
+1. Verify the domain for GitHub Pages (DMAC0042 account Settings > Pages >
+   Add a domain) by adding the TXT record GitHub gives you in Squarespace DNS.
 2. In Squarespace DNS: delete the "Squarespace Defaults" records. Keep the
    Google Workspace MX and TXT records.
 3. Add A records for `@`: 185.199.108.153, 185.199.109.153, 185.199.110.153,
-   185.199.111.153, and a CNAME for `www` to `endurancefl.github.io`.
+   185.199.111.153, and a CNAME for `www` to `dmac0042.github.io`.
 4. In the repo's Settings > Pages, set the custom domain to
    `www.milliescandy.com` (this adds a `CNAME` file), then tick Enforce HTTPS
    once the certificate is issued.
