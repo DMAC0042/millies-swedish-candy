@@ -131,26 +131,20 @@ async function handleFormSubmit(e) {
   const formAction = form.getAttribute('action');
 
   try {
-    // If using Formspree or similar service
-    if (formAction && formAction.includes('formspree')) {
-      const response = await fetch(formAction, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        showSuccess(form, formContainer, successMessage);
-      } else {
-        throw new Error('Form submission failed');
-      }
-    } else {
-      // Fallback: simulate success for demo purposes
-      // In production, replace with your actual form handler
-      await new Promise(resolve => setTimeout(resolve, 1000));
+    // Forms post to Millie's Google Apps Script (see apps-script/Code.gs).
+    // Never show "thanks" unless the script says the message went through.
+    if (!formAction || !formAction.startsWith('https://script.google.com/')) {
+      throw new Error('Form is not connected');
+    }
+    const response = await fetch(formAction, {
+      method: 'POST',
+      body: new URLSearchParams(formData)
+    });
+    const result = await response.json();
+    if (result.ok) {
       showSuccess(form, formContainer, successMessage);
+    } else {
+      throw new Error(result.error || 'Form submission failed');
     }
   } catch (error) {
     console.error('Form submission error:', error);

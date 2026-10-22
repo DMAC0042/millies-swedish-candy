@@ -70,8 +70,13 @@
           </div>
 
           <div class="form" style="margin-top:32px">
-            <!-- FORM SETUP: replace YOUR_FORM_ID with a second Formspree form id (see README) -->
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate data-form="events" aria-label="Event inquiry form">
+            <!-- Sends to Millie's Google Apps Script (see README "Setting Up Forms") -->
+            <form action="https://script.google.com/macros/s/AKfycbyxTnqXY6l_m5msWdTpyw7uOP0BzPmO2YpuUfhR8azaCx2G6MjhR0JuE27hQL2hKz8a/exec" method="POST" novalidate data-form="events" aria-label="Event inquiry form">
+            <input type="hidden" name="form" value="events">
+            <div class="form__hp" aria-hidden="true">
+              <label for="website">leave this empty</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
 
             <div class="form__row">
               <div class="form__group">

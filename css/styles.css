@@ -1206,6 +1206,15 @@ a.ruled__cell:hover {
   outline-offset: 4px;
 }
 
+/* Spam trap: hidden from people and screen readers, bots fill it in */
+.form__hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* The words under a field that says what's missing */
 .form__error {
   margin-top: 6px;

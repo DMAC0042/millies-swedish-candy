@@ -78,41 +78,28 @@ millies-swedish-candy/
 
 ## Setting Up Forms
 
-Both the Pickup Order form and Event Inquiry form need a form handler. Here's how to set each option up:
+Both forms (pickup and events) post to a Google Apps Script that runs in
+Millie's Google account: `apps-script/Code.gs`. Each submission is emailed to
+millie@milliescandy.com (Reply goes to the customer) and saved as a row in a
+private Google Sheet, "Millie's website forms", that the script creates on the
+first submission (tabs: Pickup orders, Event inquiries).
 
-### Option 1: Formspree (Recommended)
+The site only shows "thanks" when the script answers `{"ok": true}`; anything
+else shows "Error - Try Again". A hidden `website` field traps spam bots.
 
-1. Go to [formspree.io](https://formspree.io) and create a free account
-2. Create a new form for "Pickup Orders"
-3. Copy your form endpoint (looks like `https://formspree.io/f/abcd1234`)
-4. Open `pickup.html`, find the `<form>` tag, and replace:
-   ```html
-   action="https://formspree.io/f/YOUR_FORM_ID"
-   ```
-   with your actual endpoint
-5. Repeat for `events.html` with a separate form
+### Connecting (signed in as millie@milliescandy.com)
 
-**Free tier:** 50 submissions/month
+1. script.google.com > New project; name it "Millie's website forms".
+2. Replace the editor contents with `apps-script/Code.gs`; save.
+3. Choose the `setup` function > Run > allow the permissions. Millie gets a
+   "forms are connected" email.
+4. Deploy > New deployment > type Web app; Execute as: Me; Who has access:
+   Anyone. Deploy and copy the Web app URL (ends in `/exec`).
+5. Put that URL in the `action` of the form in `pickup.html` and `events.html`
+   (replacing `APPS_SCRIPT_URL`) and push.
 
-### Option 2: Netlify Forms (If hosting on Netlify)
-
-1. Add `netlify` attribute to each form:
-   ```html
-   <form netlify name="pickup-order" method="POST">
-   ```
-2. Remove the `action` attribute
-3. Deploy to Netlify — forms will appear in your Netlify dashboard
-
-### Option 3: Email Fallback
-
-This opens the user's email client (less seamless):
-
-1. Change the form action to:
-   ```html
-   action="mailto:your@email.com"
-   method="POST"
-   enctype="text/plain"
-   ```
+To change the script later: edit, then Deploy > Manage deployments > edit >
+Version: New version (keeps the same URL).
 
 ---
 
