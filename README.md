@@ -79,7 +79,7 @@ millies-swedish-candy/
 ## Setting Up Forms
 
 Both forms (pickup and events) post to a Google Apps Script that runs in
-Millie's Google account: `apps-script/Code.gs`. Each submission is emailed to
+the Gmail account milliesevents1@gmail.com: `apps-script/Code.gs`. Each submission is emailed to
 millie@milliescandy.com (Reply goes to the customer) and saved as a row in a
 private Google Sheet, "Millie's website forms", that the script creates on the
 first submission (tabs: Pickup orders, Event inquiries).
@@ -87,12 +87,17 @@ first submission (tabs: Pickup orders, Event inquiries).
 The site only shows "thanks" when the script answers `{"ok": true}`; anything
 else shows "Error - Try Again". A hidden `website` field traps spam bots.
 
-### Connecting (signed in as millie@milliescandy.com)
+Why a Gmail account and not millie@milliescandy.com: milliescandy.com has a
+strict DMARC rule (`p=reject`) and Millie's Google Workspace doesn't DKIM-sign
+as milliescandy.com, so script email sent from her account bounces. Email
+sent from a gmail.com account is signed by Google and gets through.
+
+### Connecting (signed in as milliesevents1@gmail.com)
 
 1. script.google.com > New project; name it "Millie's website forms".
 2. Replace the editor contents with `apps-script/Code.gs`; save.
 3. Choose the `setup` function > Run > allow the permissions. Millie gets a
-   "forms are connected" email.
+   "forms are connected" email at millie@milliescandy.com.
 4. Deploy > New deployment > type Web app; Execute as: Me; Who has access:
    Anyone. Deploy and copy the Web app URL (ends in `/exec`).
 5. Put that URL in the `action` of the form in `pickup.html` and `events.html`

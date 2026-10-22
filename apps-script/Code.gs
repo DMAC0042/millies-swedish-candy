@@ -1,6 +1,6 @@
 /* ================================================
    MILLIE'S - Website form handler (Google Apps Script)
-   Runs inside Millie's Google account. The pickup and
+   Runs in the Gmail account milliesevents1@gmail.com. The pickup and
    event forms on milliescandy.com post here; each one is
    emailed to Millie (reply goes straight to the customer)
    and saved as a row in the "Millie's website forms"
