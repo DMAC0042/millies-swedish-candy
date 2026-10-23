@@ -2,11 +2,13 @@
    MILLIE'S - Bag counter on the pickup form
    Bags are prepackaged, so the order is just how many
    of each size. Fills the hidden "order_summary" field
-   (e.g. "2 x 1/4 lb bag, 1 x 1 lb bag"); it is required,
-   so main.js flags the order when no bags are chosen.
+   (e.g. "2 x 1/4 lb bag, 1 x 1 lb bag"); it is required and
+   stays empty until the bags add up to MIN_LB, so main.js
+   flags any order under the minimum.
    ================================================ */
 (function () {
   var MAX = 20;
+  var MIN_LB = 3;
 
   function init() {
     var group = document.querySelector('.bags');
@@ -16,6 +18,7 @@
 
     function update() {
       var parts = [];
+      var lb = 0;
       rows.forEach(function (row) {
         var input = row.querySelector('.stepper__count');
         var n = parseInt(input.value, 10);
@@ -23,9 +26,10 @@
         input.value = n;
         row.classList.toggle('is-picked', n > 0);
         row.querySelector('[data-step="-1"]').disabled = n === 0;
+        lb += n * Number(row.dataset.lb);
         if (n > 0) parts.push(n + ' x ' + row.querySelector('.bag-row__size').textContent);
       });
-      summary.value = parts.join(', ');
+      summary.value = lb >= MIN_LB ? parts.join(', ') : '';
       if (summary.value) summary.classList.remove('error');
     }
 

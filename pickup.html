@@ -110,9 +110,9 @@
             </div>
             <div class="form__group">
               <span class="form__label form__label--required" id="bags-label">how many bags?</span>
-              <p class="bags__note">Every bag comes prepackaged with a variety of candy from the shop.</p>
+              <p class="bags__note">Every bag comes prepackaged with a variety of candy from the shop. Pickup orders start at 3 lb.</p>
               <div class="bags" role="group" aria-labelledby="bags-label">
-                <div class="bag-row">
+                <div class="bag-row" data-lb="0.25">
                   <svg class="doodle bag-row__icon bag-row__icon--quarter" aria-hidden="true"><use href="#d-bag"/></svg>
                   <span class="bag-row__size">1/4 lb bag</span>
                   <div class="stepper">
@@ -121,7 +121,7 @@
                     <button type="button" class="stepper__btn" data-step="1" aria-label="One more 1/4 lb bag">+</button>
                   </div>
                 </div>
-                <div class="bag-row">
+                <div class="bag-row" data-lb="0.5">
                   <svg class="doodle bag-row__icon bag-row__icon--half" aria-hidden="true"><use href="#d-bag"/></svg>
                   <span class="bag-row__size">1/2 lb bag</span>
                   <div class="stepper">
@@ -130,7 +130,7 @@
                     <button type="button" class="stepper__btn" data-step="1" aria-label="One more 1/2 lb bag">+</button>
                   </div>
                 </div>
-                <div class="bag-row">
+                <div class="bag-row" data-lb="1">
                   <svg class="doodle bag-row__icon bag-row__icon--pound" aria-hidden="true"><use href="#d-bag"/></svg>
                   <span class="bag-row__size">1 lb bag</span>
                   <div class="stepper">
@@ -140,7 +140,7 @@
                   </div>
                 </div>
               </div>
-              <input type="hidden" id="order-summary" data-error="please pick at least one bag" name="order_summary" required>
+              <input type="hidden" id="order-summary" data-error="pickup orders start at 3 lb" name="order_summary" required>
             </div>
             <button type="submit" class="btn btn--red form__submit">send my order</button>
             </form>
