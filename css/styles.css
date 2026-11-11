@@ -1188,24 +1188,6 @@ a.ruled__cell:hover {
   color: var(--ink);
 }
 
-/* ---------- Bag counter (js/bags.js) ---------- */
-.bags__note {
-  font-size: 0.9rem;
-  margin: 2px 0 14px;
-}
-
-.bags {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: var(--line);
-  border-left: var(--line);
-}
-
-.bags.error {
-  outline: 2px dashed var(--red);
-  outline-offset: 4px;
-}
-
 /* Spam trap: hidden from people and screen readers, bots fill it in */
 .form__hp {
   position: absolute;
@@ -1224,89 +1206,4 @@ a.ruled__cell:hover {
 .form__error::before {
   content: '! ';
   font-weight: 600;
-}
-
-.bag-row {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-  padding: 22px 12px 18px;
-  border-right: var(--line);
-  border-bottom: var(--line);
-  min-width: 0;
-}
-
-.bag-row.is-picked {
-  background: var(--mint);
-}
-
-.bag-row__icon--quarter { width: 46px; height: 46px; }
-.bag-row__icon--half { width: 58px; height: 58px; }
-.bag-row__icon--pound { width: 72px; height: 72px; }
-
-.bag-row__size {
-  font-family: var(--font-hand);
-  font-size: 1.6rem;
-  line-height: 1;
-}
-
-.stepper {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.stepper__btn {
-  width: 34px;
-  height: 34px;
-  font-size: 1.3rem;
-  line-height: 1;
-  color: var(--ink);
-  background: var(--cream);
-  border: 1.5px solid var(--ink);
-  border-radius: 50%;
-}
-
-.stepper__btn:hover:not(:disabled) {
-  background: var(--red-deep);
-  border-color: var(--red-deep);
-  color: var(--white);
-}
-
-.stepper__btn:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
-
-.stepper__count {
-  width: 44px;
-  text-align: center;
-  font-family: var(--font-hand);
-  font-size: 1.7rem;
-  line-height: 1;
-  color: var(--ink);
-  background: transparent;
-  border: none;
-  padding: 0;
-  font-variant-numeric: tabular-nums;
-}
-
-.stepper__count:focus {
-  outline: none;
-  border-bottom: 2px solid var(--red);
-}
-
-@media (max-width: 760px) {
-  .bags { grid-template-columns: 1fr; }
-  .bag-row {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 14px 14px;
-  }
-  .bag-row__size { flex: 1; }
-  .bag-row__icon--quarter,
-  .bag-row__icon--half,
-  .bag-row__icon--pound { width: 44px; height: 44px; }
 }

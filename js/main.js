@@ -195,12 +195,9 @@ function validateForm(form) {
 
   if (!isValid) {
     // Focus the first field with a problem (the visible part, for the
-    // custom pickers and the bag counter whose real field is hidden)
+    // custom pickers whose real field is hidden)
     const firstError = form.querySelector('.error');
-    if (firstError) {
-      const shown = visibleControl(firstError);
-      (shown.matches('.bags') ? shown.querySelector('button:not(:disabled), input') : shown).focus();
-    }
+    if (firstError) visibleControl(firstError).focus();
   }
 
   return isValid;
@@ -214,8 +211,7 @@ function validateForm(form) {
    ================================================ */
 function visibleControl(field) {
   if (field.type !== 'hidden' && !field.classList.contains('picker__native')) return field;
-  return document.getElementById(field.id + '-picker') ||
-    field.closest('.form__group').querySelector('.bags') || field;
+  return document.getElementById(field.id + '-picker') || field;
 }
 
 function setFieldError(field, message) {

@@ -17,7 +17,6 @@ A beautiful, responsive website for Millie's Swedish Candy Co. — a Swedish can
 ```
 millies-swedish-candy/
 ├── index.html          # Home page
-├── pickup.html         # Pickup order form
 ├── events.html         # Event inquiry form
 ├── about.html          # About page with story
 ├── privacy.html        # Privacy policy (linked in every footer)
@@ -78,11 +77,13 @@ millies-swedish-candy/
 
 ## Setting Up Forms
 
-Both forms (pickup and events) post to a Google Apps Script that runs in
-the Gmail account milliesevents1@gmail.com: `apps-script/Code.gs`. Each submission is emailed to
+The event inquiry form posts to a Google Apps Script that runs in
+the Gmail account milliesevents1@gmail.com: `apps-script/Code.gs`. (The pickup
+order page was removed 2026-11-11; the script still knows how to take a pickup
+order, but nothing on the site sends one. Rollback tag: `before-pickup-removal`.) Each submission is emailed to
 millie@milliescandy.com (Reply goes to the customer) and saved as a row in a
 private Google Sheet, "Millie's website forms", that the script creates on the
-first submission (tabs: Pickup orders, Event inquiries).
+first submission (tab: Event inquiries; an older Pickup orders tab may remain).
 
 The site only shows "thanks" when the script answers `{"ok": true}`; anything
 else shows "Error - Try Again". A hidden `website` field traps spam bots.
@@ -100,7 +101,7 @@ sent from a gmail.com account is signed by Google and gets through.
    "forms are connected" email at millie@milliescandy.com.
 4. Deploy > New deployment > type Web app; Execute as: Me; Who has access:
    Anyone. Deploy and copy the Web app URL (ends in `/exec`).
-5. Put that URL in the `action` of the form in `pickup.html` and `events.html`
+5. Put that URL in the `action` of the form in `events.html`
    (replacing `APPS_SCRIPT_URL`) and push.
 
 To change the script later: edit, then Deploy > Manage deployments > edit >
@@ -117,9 +118,9 @@ Search the HTML files for these placeholders and update them:
 | Placeholder | Where | What to Update |
 |-------------|-------|----------------|
 | `1234 Edgewater Dr` | All pages | Real shop address |
-| Hours (11am-7pm, etc.) | index.html, pickup.html, about.html | Real operating hours |
+| Hours (11am-7pm, etc.) | index.html, about.html | Real operating hours |
 | Owner's story | about.html | Real story from owner |
-| Google Maps iframe | index.html, pickup.html, about.html | Embed with real address |
+| Google Maps iframe | index.html, about.html | Embed with real address |
 
 ### How to Update the Google Map
 
@@ -127,7 +128,7 @@ Search the HTML files for these placeholders and update them:
 2. Search for your actual shop address
 3. Click **Share** → **Embed a map**
 4. Copy the iframe code
-5. Replace the existing iframe in `index.html`, `pickup.html`, and `about.html`
+5. Replace the existing iframe in `index.html` and `about.html`
 
 ---
 
